@@ -7,17 +7,10 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.simpleswipedialog.ZoomDialogFragment;
-
 public class MainLayout extends FrameLayout {
-
-    private static final String TAG = "tagMe";
 
     private OnRowClickListeners shortCallback;
     private Context context;
@@ -30,25 +23,9 @@ public class MainLayout extends FrameLayout {
         this.shortCallback = shortCallback;
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "onInterceptTouchEvent");
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                break;
-            case MotionEvent.ACTION_MOVE:
-                break;
-            case MotionEvent.ACTION_UP:
-                break;
-            case MotionEvent.ACTION_POINTER_UP:
-                break;
-        }
-        return super.onInterceptTouchEvent(ev);
-    }
 
     public MainLayout(Context context) {
         super(context);
-        Log.d(TAG, "MainCustomLayout");
 
         this.context = context;
         setBackgroundColor(Color.WHITE);
@@ -59,13 +36,11 @@ public class MainLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.d(TAG, "onMeasure");
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.d(TAG, "onLayout");
         int rootWidth = right - left;
         int rootHeight = bottom - top;
         number1.layout(rootWidth/2 - number1.getWidth()/2, 16, rootWidth/2 + number1.getWidth()/2, 16 + number1.getHeight());
@@ -75,11 +50,9 @@ public class MainLayout extends FrameLayout {
         number4.layout(rootWidth/2 - number4.getWidth()/2, 64 + number1.getHeight() + number2.getHeight() + number3.getHeight(),
                 rootWidth/2 + number4.getWidth()/2, 64 + number1.getHeight() + number2.getHeight() + number3.getHeight() + number4.getHeight());
 
-        Log.d(TAG, "root width: "+ rootWidth +"  ////  "+"root heigth: "+ rootHeight);
     }
 
     private void initWidgets(Context context) {
-        Log.d(TAG, "initWidgets");
         number1 = new TextView(context);
         number2 = new TextView(context);
         number3 = new TextView(context);
@@ -120,7 +93,6 @@ public class MainLayout extends FrameLayout {
     }
 
     private LayoutParams createLayoutParams(int width, int height) {
-        Log.d(TAG, "createLayoutParams");
         LayoutParams layoutParams = new LayoutParams(width, height);
         return layoutParams;
     }

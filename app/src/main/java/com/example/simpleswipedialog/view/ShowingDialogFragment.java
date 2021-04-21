@@ -1,39 +1,32 @@
-package com.example.simpleswipedialog;
+package com.example.simpleswipedialog.view;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.simpleswipedialog.ui.DialogLayout;
 
 
-public class ZoomDialogFragment extends DialogFragment implements DialogLayout.OnUpDownMotionListener, View.OnTouchListener, GestureDetector.OnGestureListener {
+public class ShowingDialogFragment extends DialogFragment implements View.OnTouchListener, GestureDetector.OnGestureListener {
 
 
     private String number;
     private DialogLayout dialogLayout;
-    private SwipingDetector swipingDetector;
     private GestureDetector gestureDetector;
 
-    public static ZoomDialogFragment newInstance(String number) {
-        ZoomDialogFragment fragment = new ZoomDialogFragment();
+    public static ShowingDialogFragment newInstance(String number) {
+        ShowingDialogFragment fragment = new ShowingDialogFragment();
         Bundle args = new Bundle();
         args.putString("number", number);
         fragment.setArguments(args);
@@ -68,7 +61,6 @@ public class ZoomDialogFragment extends DialogFragment implements DialogLayout.O
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         dialogLayout = new DialogLayout(getActivity());
         dialogLayout.getTextView().setText(number);
-        dialogLayout.setTouchCallback(ZoomDialogFragment.this);
         dialogLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -83,12 +75,6 @@ public class ZoomDialogFragment extends DialogFragment implements DialogLayout.O
 
 
 
-
-
-    @Override
-    public void onUpDownMotion() {
-
-    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
